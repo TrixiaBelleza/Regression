@@ -1,13 +1,13 @@
 this.dir <- dirname(parent.frame(2)$ofile)
 setwd(this.dir)
 
-source("getCoeffMatrix.r")
+source("belleza_exer3.r")
 
 #Import matrix from exer 3
-result = getACM()
-acm = result$augcoeffmatrix
-vars = result$variables
-varCount = length(vars)
+#result = getACM()
+#acm = result$augcoeffmatrix
+#vars = result$variables
+#varCount = length(vars)
 
 #Gets the pivot row based on the given max value in column
 getPivotRow <- function(acm, currCol, rowNum, max_in_col_i) {
@@ -43,7 +43,8 @@ Gaussian <- function(acm, varCount) {
       acm[j,] = acm[j,] - norm
     }
   }
-  #print(acm)
+ # print("luh")
+#  print(acm)
   #Store x[n] to list kasi may value na siya.
   x <- c()
   lastVar = acm[varCount, varCount+1] / acm[varCount, varCount]
@@ -62,8 +63,9 @@ Gaussian <- function(acm, varCount) {
     coeffWITHunknown = acm[i,i]
     x[i] = (b[i] - sum(coeffsCROSSknows)) / coeffWITHunknown
   }
-  #print("[Gaussian]:")
-  return(list(solutionSet = x, variables = vars, matrix = acm))     
+  print("[Gaussian]:")
+  print(acm)
+  return(list(solutionSet = x, matrix = acm))     
 }
 
 GaussJordan <- function(acm, varCount) {
@@ -104,7 +106,7 @@ GaussJordan <- function(acm, varCount) {
 } 
 
 #print("Gaussian: ")
-GaussianResult = Gaussian(acm, varCount)
+#GaussianResult = Gaussian(acm, varCount)
 #print(Gaussian(acm, varCount))
 #print("Gauss-Jordan: ")
 #print(GaussJordan(acm, varCount))
